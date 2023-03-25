@@ -1,9 +1,9 @@
 package netty.hello;
 
 import io.netty.bootstrap.Bootstrap;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.string.StringDecoder;
 
@@ -19,12 +19,12 @@ public class HelloClient {
                     @Override
                     protected void initChannel(NioSocketChannel nioSocketChannel) throws Exception {
                         nioSocketChannel.pipeline().addLast(new StringDecoder());
-
                     }
                 })
                 .connect(new InetSocketAddress("localhost", 10021))
                 .sync()
                 .channel()
-                .writeAndFlush("123");
+                // 传过去的需要是ByteBuf 类型的数据
+                .writeAndFlush(Unpooled.buffer().writeBytes("23123".getBytes()));
     }
 }
