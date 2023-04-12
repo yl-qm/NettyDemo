@@ -10,3 +10,6 @@
 
 ### LTC 解码器各个参数作用
 ![img_3.png](img_3.png)
+
+### 自定义协议要素
+![img_4.png](img_4.png)
